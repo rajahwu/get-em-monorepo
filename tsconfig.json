@@ -1,0 +1,20 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./apps/blackjack/tsconfig.app.json" },
+    { "path": "./apps/blackjack/tsconfig.node.json" },
+    { "path": "./apps/presentation/tsconfig.app.json" },
+    { "path": "./apps/presentation/tsconfig.node.json" },
+    { "path": "./apps/systems/tsconfig.app.json" },
+    { "path": "./apps/systems/tsconfig.node.json" },
+    { "path": "./packages/shared-ui/tsconfig.json" },
+    { "path": "./packages/shared-tokens/tsconfig.json" }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@gttm-hub/shared-ui": ["packages/shared-ui/src"],
+      "@gttm-hub/shared-tokens": ["packages/shared-tokens"]
+    }
+  }
+}

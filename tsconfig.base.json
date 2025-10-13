@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "DOM",
+      "ES2022"
+    ],
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "types": [
+      "vite/client",
+      "node"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@shared-tokens/*": [
+        "packages/shared-tokens/*"
+      ],
+      "@shared-ui/*": [
+        "packages/shared-ui/src/*"
+      ],
+      "@shared-utils/*": [
+        "packages/shared-utils/src/*"
+      ],
+      "@gttm-hub/shared-ui": [
+        "packages/shared-ui/src"
+      ],
+      "@gttm-hub/shared-tokens": [
+        "packages/shared-tokens"
+      ]
+    }
+  }
+}

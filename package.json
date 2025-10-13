@@ -1,0 +1,29 @@
+{
+  "name": "gttm-hub",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev:blackjack": "pnpm --filter blackjack dev",
+    "dev:presentation": "pnpm --filter presentation dev",
+    "dev:systems": "pnpm --filter systems dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "tokens:build": "pnpm --filter shared-tokens exec node build-tokens.js",
+    "tokens:watch": "pnpm --filter shared-tokens exec nodemon --watch packages/shared-tokens/tokens.json --exec \"node packages/shared-tokens/build-tokens.js\"",
+    "typecheck": "tsc -b"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@types/node": "^24.7.2",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1",
+    "@vitejs/plugin-react": "^5.0.4",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "style-dictionary": "^5.1.1",
+    "tailwindcss": "^4.1.14",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9"
+  },
+  "packageManager": "pnpm@10.18.2+sha512.9fb969fa749b3ade6035e0f109f0b8a60b5d08a1a87fdf72e337da90dcc93336e2280ca4e44f2358a649b83c17959e9993e777c2080879f3801e6f0d999ad3dd"
+}

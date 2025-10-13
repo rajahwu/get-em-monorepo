@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import "../../../packages/shared-tokens/theme.css";
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .btn {
+    background-color: var(--color-brand);
+    color: var(--color-text);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--motion-fast);
+  }
+
+  .btn:hover {
+    background-color: var(--color-accent);
+  }
+} 
