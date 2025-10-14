@@ -1,12 +1,14 @@
-import { Button, Card } from '@gttm-hub/shared-ui';
+import './index.css'
 
-export default function App() {
+function App() {
+
   return (
-    <div className="min-h-screen bg-surface flex items-center justify-center">
-      <Card title="Training Mode">
-        <p className="text-color-text-muted mb-md">Sharpen your Blackjack skills.</p>
-        <Button variant="primary">Start</Button>
-      </Card>
+    <div>
+      <h1 className="text-[--color-primary] font-bold underline text-blue-500">
+        Hello world!
+      </h1>
     </div>
-  );
+  )
 }
+
+export default App
