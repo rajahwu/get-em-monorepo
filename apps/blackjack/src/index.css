@@ -1,2 +1,2 @@
 @import "tailwindcss";
-@source "@gttm-hub/tailwind-preset";
+@import "@gttm-hub/tailwind-preset/config.css";

@@ -1,5 +1,5 @@
 {
-  "name": "@get-em/tailwind-preset",
+  "name": "@gttm-hub/tailwind-preset",
   "version": "0.1.0",
   "main": "index.js",
   "type": "module",
