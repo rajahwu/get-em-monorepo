@@ -4,7 +4,7 @@
     "composite": true
   },
   "include": [
-    "build-tokens.js",
+    "build-tokens-theme.js",
     "tokens.json"
   ]
 }

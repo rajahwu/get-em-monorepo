@@ -1,5 +1,5 @@
 {
-  "name": "systems",
+  "name": "@gttm-hub/systems",
   "private": true,
   "version": "0.0.0",
   "type": "module",
