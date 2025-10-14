@@ -1,0 +1,18 @@
+# <type>(scope): <short summary>
+# Example: feat(shared-ui): add Navbar component
+
+# Body (optional)
+# Explain what and why, not just how. Mention any decisions or tradeoffs.
+
+# Footer (optional)
+# Closes #[issue-number]
+# BREAKING CHANGE: describe if applicable
+
+# Types:
+# feat     → new feature
+# fix      → bug fix
+# docs     → documentation only
+# style    → formatting, no logic change
+# refactor → code change without feature/fix
+# test     → adding or fixing tests
+# chore    → build, tooling, CI, etc.
