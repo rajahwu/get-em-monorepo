@@ -1,0 +1,35 @@
+{
+  "name": "brand-assets",
+  "targets": {
+    "setup": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm run setup"
+      }
+    },
+    "inventory": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm run inventory"
+      }
+    },
+    "optimize": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm run optimize"
+      }
+    },
+    "export": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm run export:bundle"
+      }
+    },
+    "verify": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm run verify:repo"
+      }
+    }
+  }
+}

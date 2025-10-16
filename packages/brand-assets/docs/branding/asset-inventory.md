@@ -1,15 +1,20 @@
 # GTTM Asset Inventory
 
-> Last Updated: 2025-10-15
-> Total Assets: 0
+> Last Updated: 2025-10-16
+> Total Assets: 7
 
 ## 📂 Assets by Category
 
-### SVG Source Files (0)
-*No SVG files yet*
+### SVG Source Files (2)
+- assets/source/svg/gttm_icons_favicons.svg
+- assets/source/svg/gttm_logo_svg.svg
 
-### HTML Templates (0)
-*No HTML templates yet*
+### HTML Templates (5)
+- assets/source/html/gttm_blackjack.html
+- assets/source/html/gttm_landing.html
+- assets/source/html/gttm_quick_ref.html
+- assets/source/html/gttm_social_templates.html
+- assets/source/html/gttm_style_guide.html
 
 ### Finalized Assets (0)
 
@@ -34,11 +39,11 @@
 
 ## 📊 Summary
 
-- **SVG Sources:** 0
-- **HTML Templates:** 0
+- **SVG Sources:** 2
+- **HTML Templates:** 5
 - **Finalized Assets:** 0
-- **Total:** 0
+- **Total:** 7
 
 ---
 
-*Auto-generated on 2025-10-15 by generate-inventory.sh*
+*Auto-generated on 2025-10-16 by generate-inventory.sh*
