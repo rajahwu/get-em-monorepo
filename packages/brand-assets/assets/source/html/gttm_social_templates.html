@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTTM Social Media Templates</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #5A4BFF;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .template {
+            position: relative;
+        }
+
+        .template-label {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: #A0AEC0;
+            font-size: 0.9rem;
+        }
+
+        /* Instagram Post Template */
+        .instagram-post {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #0F1117;
+            border: 2px solid #2A2E37;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instagram-post::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #5A4BFF, #00E6A8);
+        }
+
+        .post-logo {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #5A4BFF;
+            margin-bottom: 1rem;
+        }
+
+        .post-tagline {
+            font-size: 1.2rem;
+            color: #00E6A8;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .post-content {
+            font-size: 1.5rem;
+            color: #ffffff;
+            text-align: center;
+            line-height: 1.4;
+            max-width: 80%;
+        }
+
+        .post-footer {
+            position: absolute;
+            bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #A0AEC0;
+        }
+
+        /* Twitter/X Card */
+        .twitter-card {
+            width: 100%;
+            aspect-ratio: 2/1;
+            background: #0F1117;
+            border: 2px solid #2A2E37;
+            display: flex;
+            align-items: center;
+            padding: 2rem 3rem;
+            position: relative;
+        }
+
+        .twitter-content {
+            flex: 1;
+        }
+
+        .twitter-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .twitter-subtitle {
+            font-size: 1.2rem;
+            color: #00E6A8;
+        }
+
+        .twitter-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #5A4BFF, #00E6A8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #0F1117;
+            font-weight: 700;
+        }
+
+        /* Story Template */
+        .story-template {
+            width: 100%;
+            aspect-ratio: 9/16;
+            background: linear-gradient(180deg, #0F1117 0%, #161A22 100%);
+            border: 2px solid #2A2E37;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 3rem 2rem;
+            position: relative;
+        }
+
+        .story-header {
+            text-align: center;
+        }
+
+        .story-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #5A4BFF;
+            margin-bottom: 1rem;
+        }
+
+        .story-main {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .story-highlight {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00E6A8;
+            margin-bottom: 1rem;
+        }
+
+        .story-text {
+            font-size: 1.3rem;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+
+        .story-cta {
+            background: #5A4BFF;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* LinkedIn Banner */
+        .linkedin-banner {
+            width: 100%;
+            aspect-ratio: 4/1;
+            background: #0F1117;
+            border: 2px solid #2A2E37;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .linkedin-banner::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 40%;
+            background: linear-gradient(90deg, transparent, #5A4BFF 50%, #00E6A8);
+            opacity: 0.1;
+        }
+
+        .banner-content {
+            z-index: 1;
+        }
+
+        .banner-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .banner-subtitle {
+            font-size: 1.5rem;
+            color: #00E6A8;
+        }
+
+        /* YouTube Thumbnail */
+        .youtube-thumbnail {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #0F1117;
+            border: 2px solid #2A2E37;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .thumbnail-badge {
+            background: #E05263;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .thumbnail-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .thumbnail-subtitle {
+            font-size: 1.5rem;
+            color: #00E6A8;
+            text-align: center;
+        }
+
+        /* Announcement Template */
+        .announcement {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #0F1117;
+            border: 2px solid #2A2E37;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .announcement-icon {
+            width: 100px;
+            height: 100px;
+            background: #5A4BFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-size: 3rem;
+        }
+
+        .announcement-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .announcement-text {
+            font-size: 1.2rem;
+            color: #00E6A8;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .download-btn {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #5A4BFF;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #4a3be8;
+        }
+
+        @media (max-width: 768px) {
+            .templates-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GTTM Social Media Templates</h1>
+        
+        <div class="templates-grid">
+            <!-- Instagram Post -->
+            <div class="template">
+                <div class="template-label">Instagram Post (1080x1080)</div>
+                <div class="instagram-post">
+                    <div class="post-logo">GTTM</div>
+                    <div class="post-tagline">Train Smarter. Play Harder.</div>
+                    <div class="post-content">Master blackjack strategy through interactive play</div>
+                    <div class="post-footer">GetEmHub.com</div>
+                </div>
+            </div>
+
+            <!-- Twitter Card -->
+            <div class="template">
+                <div class="template-label">Twitter/X Card (1200x600)</div>
+                <div class="twitter-card">
+                    <div class="twitter-content">
+                        <div class="twitter-title">Learn Through Play</div>
+                        <div class="twitter-subtitle">GTTM Hub • Gaming + Training</div>
+                    </div>
+                    <div class="twitter-icon">G</div>
+                </div>
+            </div>
+
+            <!-- Story Template -->
+            <div class="template">
+                <div class="template-label">Instagram Story (1080x1920)</div>
+                <div class="story-template">
+                    <div class="story-header">
+                        <div class="story-title">GTTM HUB</div>
+                    </div>
+                    <div class="story-main">
+                        <div class="story-highlight">NEW FEATURE</div>
+                        <div class="story-text">Blackjack Trainer<br>with Real-Time Strategy Tips</div>
+                    </div>
+                    <div class="story-cta">SWIPE UP TO TRY IT</div>
+                </div>
+            </div>
+
+            <!-- LinkedIn Banner -->
+            <div class="template">
+                <div class="template-label">LinkedIn Banner (1584x396)</div>
+                <div class="linkedin-banner">
+                    <div class="banner-content">
+                        <div class="banner-title">GTTM Hub</div>
+                        <div class="banner-subtitle">Where Systems Meet Strategy</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube Thumbnail -->
+            <div class="template">
+                <div class="template-label">YouTube Thumbnail (1280x720)</div>
+                <div class="youtube-thumbnail">
+                    <div class="thumbnail-badge">NEW VIDEO</div>
+                    <div class="thumbnail-title">Blackjack<br>Strategy Guide</div>
+                    <div class="thumbnail-subtitle">Learn to Win with GTTM</div>
+                </div>
+            </div>
+
+            <!-- Announcement -->
+            <div class="template">
+                <div class="template-label">Announcement Post (1080x1080)</div>
+                <div class="announcement">
+                    <div class="announcement-icon">🎮</div>
+                    <div class="announcement-title">Now Live!</div>
+                    <div class="announcement-text">GTTM Blackjack Trainer<br>Your path to mastery starts here</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-btn">
+            <button class="btn" onclick="alert('Right-click any template above and select \'Save Image As\' to download. For higher resolution, use the Midjourney prompts from the style guide.')">Download Instructions</button>
+        </div>
+    </div>
+</body>
+</html>

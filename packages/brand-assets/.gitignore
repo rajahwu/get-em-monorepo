@@ -1,0 +1,29 @@
+# Large generated files
+assets/generated/**/*.png
+assets/generated/**/*.jpg
+assets/finalized/**/*.png
+assets/finalized/**/*.jpg
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+.cache/
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs
+*.log
