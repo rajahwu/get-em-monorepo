@@ -63,9 +63,17 @@ run_ai_sync() {
 
   echo ""
   echo "📦 Committing AI sync checkpoint..."
-  git add "$AICONTEXT_FILE"
-  git commit -m "chore(ai): sync project state [auto-sync]" || echo "⚠️ No changes to commit"
 
+  # Resolve symlink to real path
+  REAL_PATH=$(readlink -f "$AICONTEXT_FILE")
+
+  if [ -f "$REAL_PATH" ]; then
+    git add "$REAL_PATH"
+    git commit -m "chore(ai): sync project state [auto-sync]" || echo "⚠️ No changes to commit"
+  else
+    echo "❌ Could not find resolved AI context file at $REAL_PATH"
+  fi
+  
   echo ""
   echo "✅ AI Sync Complete — AI collaborators are now up-to-date."
 }
