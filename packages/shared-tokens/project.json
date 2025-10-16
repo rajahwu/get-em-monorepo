@@ -1,0 +1,23 @@
+{
+  "name": "shared-tokens",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm run tokens-theme:build && pnpm run tokens-vars:build"
+      }
+    },
+    "watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm run tokens:watch"
+      }
+    },
+    "sync": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm run sync:tokens"
+      }
+    }
+  }
+}
