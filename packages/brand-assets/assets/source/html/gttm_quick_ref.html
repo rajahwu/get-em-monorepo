@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTTM Hub - Quick Reference Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0F1117;
+            color: #ffffff;
+            padding: 2rem;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #5A4BFF;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #5A4BFF;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #00E6A8;
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00E6A8;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .color-swatch {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .color-box {
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .color-info {
+            flex: 1;
+        }
+
+        .color-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .color-hex {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #A0AEC0;
+        }
+
+        .naming-pattern {
+            background: rgba(90, 75, 255, 0.1);
+            border: 1px solid rgba(90, 75, 255, 0.3);
+            padding: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #5A4BFF;
+        }
+
+        .example-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .example-list li {
+            padding: 0.4rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #A0AEC0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .example-list li:last-child {
+            border-bottom: none;
+        }
+
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .size-table td {
+            padding: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .size-table td:first-child {
+            font-weight: 600;
+            color: #00E6A8;
+            width: 40%;
+        }
+
+        .workflow-steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .workflow-steps li {
+            counter-increment: step-counter;
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .workflow-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #5A4BFF;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .tool-item {
+            background: rgba(0, 230, 168, 0.1);
+            padding: 0.5rem;
+            font-size: 0.85rem;
+            border-left: 3px solid #00E6A8;
+        }
+
+        .tool-name {
+            font-weight: 600;
+            color: #00E6A8;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .checklist li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.85rem;
+        }
+
+        .checklist li::before {
+            content: '□';
+            position: absolute;
+            left: 0;
+            color: #00E6A8;
+            font-size: 1.2rem;
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: #5A4BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(90, 75, 255, 0.4);
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            background: #4a3be8;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .card {
+                break-inside: avoid;
+                border: 1px solid #ccc;
+            }
+            .print-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>GTTM Hub Quick Reference</h1>
+            <div class="subtitle">Brand Guidelines • Asset Generation • Naming Convention</div>
+        </div>
+
+        <!-- Color Palette -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-title">🎨 Color Palette</div>
+                
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #5A4BFF;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Electric Indigo</div>
+                        <div class="color-hex">#5A4BFF • --color-brand</div>
+                    </div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #00E6A8;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Aqua Mint</div>
+                        <div class="color-hex">#00E6A8 • --color-accent</div>
+                    </div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #0F1117;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Void Black</div>
+                        <div class="color-hex">#0F1117 • --color-surface</div>
+                    </div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #FFCAB1;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Peach Glow</div>
+                        <div class="color-hex">#FFCAB1 • --color-peach</div>
+                    </div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #E05263;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Crimson Rose</div>
+                        <div class="color-hex">#E05263 • --color-crimson</div>
+                    </div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #A0AEC0;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Muted Silver</div>
+                        <div class="color-hex">#A0AEC0 • --color-text-muted</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand Personality -->
+            <div class="card">
+                <div class="card-title">🎯 Brand Personality</div>
+                <div style="margin-bottom: 0.75rem;">
+                    <strong style="color: #5A4BFF;">🎯 Playful Precision</strong>
+                    <div style="font-size: 0.85rem; color: #A0AEC0; margin-top: 0.25rem;">Balances fun with focus</div>
+                </div>
+                <div style="margin-bottom: 0.75rem;">
+                    <strong style="color: #5A4BFF;">🧠 Systems Thinking</strong>
+                    <div style="font-size: 0.85rem; color: #A0AEC0; margin-top: 0.25rem;">Everything connects</div>
+                </div>
+                <div style="margin-bottom: 0.75rem;">
+                    <strong style="color: #5A4BFF;">⚙️ Technical Elegance</strong>
+                    <div style="font-size: 0.85rem; color: #A0AEC0; margin-top: 0.25rem;">Clean lines, clear logic</div>
+                </div>
+                <div>
+                    <strong style="color: #5A4BFF;">🚀 Empowering</strong>
+                    <div style="font-size: 0.85rem; color: #A0AEC0; margin-top: 0.25rem;">Encourages mastery</div>
+                </div>
+            </div>
+
+            <!-- Naming Convention -->
+            <div class="card">
+                <div class="card-title">📝 Naming Pattern</div>
+                <div class="naming-pattern">gttm-[category]-[descriptor]-[variant]-[size].[ext]</div>
+                
+                <strong style="font-size: 0.9rem; display: block; margin-bottom: 0.5rem;">Examples:</strong>
+                <ul class="example-list">
+                    <li>gttm-logo-wordmark-primary.svg</li>
+                    <li>gttm-icon-play-primary-24.svg</li>
+                    <li>gttm-social-instagram-post-launch.png</li>
+                    <li>gttm-game-blackjack-card-spade.svg</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Social Media Sizes -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-title">📱 Social Media Sizes</div>
+                <table class="size-table">
+                    <tr>
+                        <td>Instagram Post</td>
+                        <td>1080 × 1080</td>
+                    </tr>
+                    <tr>
+                        <td>Instagram Story</td>
+                        <td>1080 × 1920</td>
+                    </tr>
+                    <tr>
+                        <td>Twitter Card</td>
+                        <td>1200 × 628</td>
+                    </tr>
+                    <tr>
+                        <td>LinkedIn Banner</td>
+                        <td>1584 × 396</td>
+                    </tr>
+                    <tr>
+                        <td>YouTube Thumb</td>
+                        <td>1280 × 720</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Asset Generation Workflow -->
+            <div class="card">
+                <div class="card-title">🔄 Generation Workflow</div>
+                <ol class="workflow-steps">
+                    <li>Identify asset need</li>
+                    <li>Find prompt in prompts.md</li>
+                    <li>Generate with AI tool</li>
+                    <li>Apply naming convention</li>
+                    <li>Export & optimize</li>
+                    <li>Place in directory</li>
+                    <li>Update documentation</li>
+                </ol>
+            </div>
+
+            <!-- AI Tools -->
+            <div class="card">
+                <div class="card-title">🤖 AI Tools</div>
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <div class="tool-name">Midjourney</div>
+                        <div style="font-size: 0.8rem; color: #A0AEC0;">Art, covers, heroes</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">DALL·E</div>
+                        <div style="font-size: 0.8rem; color: #A0AEC0;">Precise layouts</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">Claude</div>
+                        <div style="font-size: 0.8rem; color: #A0AEC0;">SVG, HTML, code</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">Figma</div>
+                        <div style="font-size: 0.8rem; color: #A0AEC0;">Precise control</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quality Checklist -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-title">✅ Quality Checklist</div>
+                <ul class="checklist">
+                    <li>Matches brand color palette</li>
+                    <li>Follows flat minimalist style</li>
+                    <li>High contrast and readable</li>
+                    <li>Correct dimensions for use</li>
+                    <li>Named using convention</li>
+                    <li>Optimized file size</li>
+                    <li>Placed in correct directory</li>
+                    <li>Documentation updated</li>
+                </ul>
+            </div>
+
+            <!-- Directory Structure -->
+            <div class="card">
+                <div class="card-title">📁 Directory Structure</div>
+                <div style="font-family: 'Courier New', monospace; font-size: 0.8rem; color: #A0AEC0; line-height: 1.6;">
+                    assets/<br>
+                    ├── brand/<br>
+                    │   ├── logos/<br>
+                    │   ├── favicons/<br>
+                    │   └── patterns/<br>
+                    ├── ui/<br>
+                    │   ├── icons/<br>
+                    │   └── components/<br>
+                    ├── game/<br>
+                    │   └── blackjack/<br>
+                    ├── social/<br>
+                    │   ├── instagram/<br>
+                    │   └── twitter/<br>
+                    └── marketing/
+                </div>
+            </div>
+
+            <!-- File Formats -->
+            <div class="card">
+                <div class="card-title">📄 File Formats</div>
+                <table class="size-table">
+                    <tr>
+                        <td>SVG</td>
+                        <td>Logos, icons (preferred)</td>
+                    </tr>
+                    <tr>
+                        <td>PNG</td>
+                        <td>Raster with transparency</td>
+                    </tr>
+                    <tr>
+                        <td>WEBP</td>
+                        <td>Modern web format</td>
+                    </tr>
+                    <tr>
+                        <td>JPG</td>
+                        <td>Photos, no transparency</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Key Resources -->
+        <div class="card" style="margin-top: 1.5rem;">
+            <div class="card-title">📚 Key Resources</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.85rem;">
+                <div>
+                    <strong style="color: #00E6A8;">Brand Guidelines</strong><br>
+                    <span style="color: #A0AEC0;">docs/branding/brand-guidelines.md</span>
+                </div>
+                <div>
+                    <strong style="color: #00E6A8;">Prompt Library</strong><br>
+                    <span style="color: #A0AEC0;">docs/branding/prompts.md</span>
+                </div>
+                <div>
+                    <strong style="color: #00E6A8;">Naming Convention</strong><br>
+                    <span style="color: #A0AEC0;">docs/branding/asset-naming-convention.md</span>
+                </div>
+                <div>
+                    <strong style="color: #00E6A8;">Asset Workflow</strong><br>
+                    <span style="color: #A0AEC0;">docs/branding/asset-workflow.md</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="print-btn" onclick="window.print()">Print Reference Card</button>
+</body>
+</html>

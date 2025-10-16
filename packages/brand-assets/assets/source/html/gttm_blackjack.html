@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTTM Blackjack Trainer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0F1117;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 1rem 0 2rem;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #5A4BFF;
+        }
+
+        .game-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #00E6A8;
+        }
+
+        /* Game Table */
+        .game-table {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Dealer Section */
+        .dealer-section,
+        .player-section {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .dealer-section {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hand-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .dealer-section .hand-value {
+            color: #E05263;
+        }
+
+        .player-section .hand-value {
+            color: #00E6A8;
+        }
+
+        /* Cards Display */
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            min-height: 100px;
+            align-items: center;
+        }
+
+        .card {
+            width: 70px;
+            height: 98px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .card.red {
+            color: #E05263;
+        }
+
+        .card.black {
+            color: #0F1117;
+        }
+
+        .card-hidden {
+            background: #5A4BFF;
+            color: white;
+            font-size: 0;
+        }
+
+        .card-hidden::after {
+            content: '?';
+            font-size: 2rem;
+            color: white;
+        }
+
+        .card-suit {
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.85rem 1.75rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .btn-hit {
+            background: #00E6A8;
+            color: #0F1117;
+        }
+
+        .btn-hit:hover:not(:disabled) {
+            background: #00d498;
+        }
+
+        .btn-stand {
+            background: #5A4BFF;
+            color: white;
+        }
+
+        .btn-stand:hover:not(:disabled) {
+            background: #4a3be8;
+        }
+
+        .btn-new {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-new:hover {
+            border-color: #FFCAB1;
+            color: #FFCAB1;
+        }
+
+        /* Message */
+        .message {
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid transparent;
+        }
+
+        .message.win {
+            color: #00E6A8;
+            border-color: rgba(0, 230, 168, 0.3);
+        }
+
+        .message.lose {
+            color: #E05263;
+            border-color: rgba(224, 82, 99, 0.3);
+        }
+
+        .message.push {
+            color: #FFCAB1;
+            border-color: rgba(255, 202, 177, 0.3);
+        }
+
+        /* Trainer Tips */
+        .trainer-tip {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .trainer-tip strong {
+            color: #5A4BFF;
+        }
+
+        @media (max-width: 768px) {
+            .game-table {
+                padding: 1.5rem 1rem;
+            }
+
+            .card {
+                width: 55px;
+                height: 77px;
+                font-size: 1.4rem;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>GTTM BLACKJACK TRAINER</h1>
+    </div>
+
+    <div class="game-container">
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-label">Wins</div>
+                <div class="stat-value" id="wins">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Losses</div>
+                <div class="stat-value" id="losses">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Pushes</div>
+                <div class="stat-value" id="pushes">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Bankroll</div>
+                <div class="stat-value" id="bankroll">$1000</div>
+            </div>
+        </div>
+
+        <div class="game-table">
+            <div class="dealer-section">
+                <div class="section-label">Dealer</div>
+                <div class="hand-value" id="dealer-value">0</div>
+                <div class="cards" id="dealer-cards"></div>
+            </div>
+
+            <div class="player-section">
+                <div class="section-label">Player</div>
+                <div class="hand-value" id="player-value">0</div>
+                <div class="cards" id="player-cards"></div>
+            </div>
+        </div>
+
+        <div class="message" id="message"></div>
+
+        <div class="controls">
+            <button class="btn btn-hit" id="hit-btn">Hit</button>
+            <button class="btn btn-stand" id="stand-btn">Stand</button>
+            <button class="btn btn-new" id="new-btn">New Game</button>
+        </div>
+
+        <div class="trainer-tip" id="trainer-tip">
+            <strong>Tip:</strong> Click "New Game" to start playing!
+        </div>
+    </div>
+
+    <script>
+        const deck = [];
+        let playerHand = [];
+        let dealerHand = [];
+        let gameOver = false;
+        let stats = { wins: 0, losses: 0, pushes: 0, bankroll: 1000 };
+
+        const suits = ['♠', '♥', '♦', '♣'];
+        const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+        function createDeck() {
+            deck.length = 0;
+            for (let suit of suits) {
+                for (let value of values) {
+                    deck.push({ value, suit, numValue: getNumValue(value) });
+                }
+            }
+            shuffleDeck();
+        }
+
+        function shuffleDeck() {
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+        }
+
+        function getNumValue(value) {
+            if (value === 'A') return 11;
+            if (['J', 'Q', 'K'].includes(value)) return 10;
+            return parseInt(value);
+        }
+
+        function calculateHandValue(hand) {
+            let value = 0;
+            let aces = 0;
+
+            for (let card of hand) {
+                value += card.numValue;
+                if (card.value === 'A') aces++;
+            }
+
+            while (value > 21 && aces > 0) {
+                value -= 10;
+                aces--;
+            }
+
+            return value;
+        }
+
+        function drawCard() {
+            if (deck.length === 0) createDeck();
+            return deck.pop();
+        }
+
+        function displayCard(card, isHidden = false) {
+            const cardDiv = document.createElement('div');
+            cardDiv.className = `card ${['♥', '♦'].includes(card.suit) ? 'red' : 'black'}`;
+            if (isHidden) {
+                cardDiv.classList.add('card-hidden');
+            } else {
+                cardDiv.innerHTML = `${card.value}<div class="card-suit">${card.suit}</div>`;
+            }
+            return cardDiv;
+        }
+
+        function updateDisplay() {
+            const dealerCardsEl = document.getElementById('dealer-cards');
+            const playerCardsEl = document.getElementById('player-cards');
+            
+            dealerCardsEl.innerHTML = '';
+            playerCardsEl.innerHTML = '';
+
+            dealerHand.forEach((card, index) => {
+                dealerCardsEl.appendChild(displayCard(card, !gameOver && index === 1));
+            });
+
+            playerHand.forEach(card => {
+                playerCardsEl.appendChild(displayCard(card));
+            });
+
+            const playerValue = calculateHandValue(playerHand);
+            const dealerValue = gameOver ? calculateHandValue(dealerHand) : calculateHandValue([dealerHand[0]]);
+
+            document.getElementById('player-value').textContent = playerValue;
+            document.getElementById('dealer-value').textContent = dealerValue;
+        }
+
+        function updateStats() {
+            document.getElementById('wins').textContent = stats.wins;
+            document.getElementById('losses').textContent = stats.losses;
+            document.getElementById('pushes').textContent = stats.pushes;
+            document.getElementById('bankroll').textContent = `$${stats.bankroll}`;
+        }
+
+        function getBasicStrategyTip() {
+            const playerValue = calculateHandValue(playerHand);
+            const dealerUpCard = dealerHand[0].numValue;
+
+            if (playerValue < 12) return "Basic Strategy: Always hit on 11 or less";
+            if (playerValue >= 17) return "Basic Strategy: Stand on hard 17 or higher";
+            if (playerValue === 12 && dealerUpCard >= 4 && dealerUpCard <= 6) return "Basic Strategy: Stand against dealer 4-6";
+            if (playerValue >= 13 && playerValue <= 16 && dealerUpCard <= 6) return "Basic Strategy: Stand against dealer 2-6";
+            if (playerValue >= 13 && playerValue <= 16 && dealerUpCard >= 7) return "Basic Strategy: Hit against dealer 7 or higher";
+            
+            return "Consider the dealer's up card when making your decision";
+        }
+
+        function newGame() {
+            if (deck.length < 10) createDeck();
+            
+            playerHand = [drawCard(), drawCard()];
+            dealerHand = [drawCard(), drawCard()];
+            gameOver = false;
+
+            document.getElementById('message').textContent = '';
+            document.getElementById('message').className = 'message';
+            document.getElementById('hit-btn').disabled = false;
+            document.getElementById('stand-btn').disabled = false;
+            document.getElementById('trainer-tip').innerHTML = `<strong>Tip:</strong> ${getBasicStrategyTip()}`;
+
+            updateDisplay();
+
+            if (calculateHandValue(playerHand) === 21) {
+                stand();
+            }
+        }
+
+        function hit() {
+            if (gameOver) return;
+
+            playerHand.push(drawCard());
+            updateDisplay();
+
+            const playerValue = calculateHandValue(playerHand);
+            
+            if (playerValue > 21) {
+                endGame('bust');
+            } else if (playerValue === 21) {
+                stand();
+            } else {
+                document.getElementById('trainer-tip').innerHTML = `<strong>Tip:</strong> ${getBasicStrategyTip()}`;
+            }
+        }
+
+        function stand() {
+            if (gameOver) return;
+            
+            gameOver = true;
+            document.getElementById('hit-btn').disabled = true;
+            document.getElementById('stand-btn').disabled = true;
+
+            while (calculateHandValue(dealerHand) < 17) {
+                dealerHand.push(drawCard());
+            }
+
+            updateDisplay();
+
+            const playerValue = calculateHandValue(playerHand);
+            const dealerValue = calculateHandValue(dealerHand);
+
+            if (dealerValue > 21) {
+                endGame('dealer-bust');
+            } else if (playerValue > dealerValue) {
+                endGame('win');
+            } else if (playerValue < dealerValue) {
+                endGame('lose');
+            } else {
+                endGame('push');
+            }
+        }
+
+        function endGame(result) {
+            gameOver = true;
+            const messageEl = document.getElementById('message');
+            document.getElementById('hit-btn').disabled = true;
+            document.getElementById('stand-btn').disabled = true;
+
+            switch(result) {
+                case 'bust':
+                    messageEl.textContent = 'BUST! Dealer wins.';
+                    messageEl.className = 'message lose';
+                    stats.losses++;
+                    stats.bankroll -= 10;
+                    break;
+                case 'dealer-bust':
+                    messageEl.textContent = 'Dealer busts! You win!';
+                    messageEl.className = 'message win';
+                    stats.wins++;
+                    stats.bankroll += 10;
+                    break;
+                case 'win':
+                    messageEl.textContent = 'You win!';
+                    messageEl.className = 'message win';
+                    stats.wins++;
+                    stats.bankroll += 10;
+                    break;
+                case 'lose':
+                    messageEl.textContent = 'Dealer wins.';
+                    messageEl.className = 'message lose';
+                    stats.losses++;
+                    stats.bankroll -= 10;
+                    break;
+                case 'push':
+                    messageEl.textContent = 'Push! It\'s a tie.';
+                    messageEl.className = 'message push';
+                    stats.pushes++;
+                    break;
+            }
+
+            updateStats();
+            document.getElementById('trainer-tip').innerHTML = '<strong>Tip:</strong> Click "New Game" to play again!';
+        }
+
+        document.getElementById('hit-btn').addEventListener('click', hit);
+        document.getElementById('stand-btn').addEventListener('click', stand);
+        document.getElementById('new-btn').addEventListener('click', newGame);
+
+        createDeck();
+        updateStats();
+    </script>
+</body>
+</html>
