@@ -11,7 +11,16 @@
     "tokens-vars:build": "pnpm --filter shared-tokens exec node build-tokens-vars.js",
     "tokens-theme:build": "pnpm --filter shared-tokens exec node build-tokens-theme.js",
     "tokens:watch": "pnpm --filter shared-tokens exec nodemon --watch packages/shared-tokens/tokens.json --exec \"node packages/shared-tokens/build-tokens.js\"",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "setup": "bash scripts/setup-repo.sh",
+    "inventory": "bash scripts/generate-inventory.sh",
+    "optimize": "bash scripts/optimize-assets.sh",
+    "export:bundle": "bash scripts/export-bundle.sh",
+    "sync:tokens": "bash scripts/sync-tokens.sh",
+    "verify:repo": "bash scripts/verify-repo-state.sh",
+    "patch:claude": "bash scripts/patch-claude-assets.sh",
+    "rollback:claude": "bash scripts/rollback-claude-assets.sh",
+    "manage:claude": "bash scripts/manage-claude-assets.sh"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.14",
@@ -26,7 +35,7 @@
     "typescript": "^5.9.3",
     "vite": "^7.1.9"
   },
-  "packageManager": "pnpm@10.18.2+sha512.9fb969fa749b3ade6035e0f109f0b8a60b5d08a1a87fdf72e337da90dcc93336e2280ca4e44f2358a649b83c17959e9993e777c2080879f3801e6f0d999ad3dd",
+  "packageManager": "pnpm@10.18.3+sha512.bbd16e6d7286fd7e01f6b3c0b3c932cda2965c06a908328f74663f10a9aea51f1129eea615134bf992831b009eabe167ecb7008b597f40ff9bc75946aadfb08d",
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
