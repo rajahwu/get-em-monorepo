@@ -829,7 +829,6 @@ echo "  - Add remote: git remote add origin [url]"
 echo "  - Update .ai-context/current-project-state.md with today's date"
 echo ""
 echo -e "${GREEN}Happy creating! 🎨${NC}"
-EOF
 
 chmod +x scripts/setup-repo.sh
 echo -e "${GREEN}✓${NC} Created setup script"
