@@ -1,9 +1,9 @@
 # Current Project State
-_Auto-synced on Wed Oct 15 19:52:01 EDT 2025_
+_Auto-synced on Wed Oct 15 20:09:12 EDT 2025_
 
 ## Repository Snapshot
 - **Branch:** feat/tailwind-preset
-- **Latest Commit:** cc8c6b1 — feat(tailwind-preset): add shared Tailwind preset with token integration and docs (34 hours ago)
+- **Latest Commit:** 400a3e4 — chore: add sync-tokens script to export theme.css into AI context (3 minutes ago)
 - **LFS Tracked Files:** 0
 - **Tokens File:** ✅ Found
 - **Assets Folder:** ⚠️ Missing
@@ -12,10 +12,10 @@ _Auto-synced on Wed Oct 15 19:52:01 EDT 2025_
 (no workspace data)
 
 ## Recent Commits
-- cc8c6b1 feat(tailwind-preset): add shared Tailwind preset with token integration and docs (34 hours ago)
+- 400a3e4 chore: add sync-tokens script to export theme.css into AI context (3 minutes ago)
+- 8f21ec5 chore: add Claude asset management scripts and setup helpers (11 minutes ago)
+- d6d9702 chore(ai): sync project state [auto-sync] (17 minutes ago)
+- cc8c6b1 feat(tailwind-preset): add shared Tailwind preset with token integration and docs (35 hours ago)
 - 2140fd5 chore(repo): restore blackjack, re-link tailwind preset, fix tokens and JSX; ensure build passes (35 hours ago)
-- 8b5870a chore(shared-tokens|tailwind-preset|blackjack): restore app, re-link workspace preset, fix token usage and JSX className (35 hours ago)
-- 4792169 feat(shared-tokens): build theme and vars CSS outputs for token consumption (2 days ago)
-- fc0878e feat(shared-tokens): build theme and vars CSS outputs for token consumption (2 days ago)
 ## AI Sync Notes
 This snapshot helps AI collaborators align on project state, brand asset versions, and token changes.
