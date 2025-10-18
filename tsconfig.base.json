@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ESNEXT",
     "lib": [
       "DOM",
       "ES2022"
     ],
     "jsx": "react-jsx",
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
@@ -16,6 +16,9 @@
       "vite/client",
       "node"
     ],
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
     "baseUrl": ".",
     "paths": {
       "@shared-tokens/*": [
