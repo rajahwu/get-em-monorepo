@@ -45,7 +45,7 @@ pnpm-debug.log*
 *.map
 
 # Ignore AI content artifacts
-.ai-content/
+.ai-context/
 
 
 .nx/cache
